@@ -1,0 +1,20 @@
+# See: http://code.google.com/p/arduino/wiki/Platforms
+
+menu.cpu=Processor
+
+##############################################################
+
+rx2635.name=Walkera RX2635H
+
+rx2635.upload.tool=up42
+rx2635.upload.protocol=xmodem
+rx2635.upload.key=0x8E500166526E7BD7EEC85C7AC05AD792
+rx2635.upload.maximum_size=32768
+rx2635.upload.maximum_data_size=4096
+rx2635.upload.speed=38400
+
+rx2635.build.mcu=atxmega32a4
+rx2635.build.f_cpu=16000000L
+rx2635.build.board=RX2635H
+rx2635.build.core=xmega
+rx2635.build.variant=rx2635h

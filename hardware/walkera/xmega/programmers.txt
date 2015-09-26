@@ -1,0 +1,6 @@
+avrispmkii.name=AVRISP mkII
+avrispmkii.communication=usb
+avrispmkii.protocol=pdi
+avrispmkii.program.protocol=pdi
+avrispmkii.program.tool=avrdude
+avrispmkii.program.extra_params=-Pusb
