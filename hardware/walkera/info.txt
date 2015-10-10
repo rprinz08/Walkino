@@ -1,2 +1,6 @@
 Third party Arduino IDE board specification at:
 https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5-3rd-party-Hardware-specification 
+
+Atmel XMEGA Baud rate calculation in Atmel application note 1307
+http://www.atmel.com/dyn/resources/prod_documents/AVR1307.zip
+

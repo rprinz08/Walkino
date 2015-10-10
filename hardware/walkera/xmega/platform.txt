@@ -115,8 +115,10 @@ build.usb_flags=-DUSB_VID={build.vid} -DUSB_PID={build.pid} '-DUSB_MANUFACTURER=
 ####################################################################################
 
 tools.up42.path={runtime.ide.path}/hardware/tools/walkera/bin
-tools.up42.cmd.path={path}/upload.cmd
+#tools.up42.cmd.path={path}/upload.cmd
+tools.up42.cmd.path={path}/up42
 tools.up42.upload.params.verbose=-v
 tools.up42.upload.params.quiet=-q
 
-tools.up42.upload.pattern="{cmd.path}" "{build.path}/{build.project_name}" {upload.key} {serial.port} {upload.speed}
+#tools.up42.upload.pattern="{cmd.path}" "{build.path}/{build.project_name}" {upload.key} {serial.port} {upload.speed}
+tools.up42.upload.pattern="{cmd.path}" -s -i "{build.path}/{build.project_name}.hex" -x -k {upload.key} -p {serial.port} -b {upload.speed} -N -8 -1

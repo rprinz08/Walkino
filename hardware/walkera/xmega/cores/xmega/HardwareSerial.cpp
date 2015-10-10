@@ -1004,83 +1004,124 @@ void serialEventRun(void)
 // calculates the baud rate values will appear at some point in the future, once I have
 // a nice bullet-proof algorithm for it.
 //
-// Note that THESE values assume F_CPU==32000000
+// See page 233 XMEGA-A-Manual.pdf
 
 uint16_t temp_get_baud(unsigned long baud, uint8_t use_u2x)
 {
-uint16_t i1;
-static const unsigned long aBaud[] PROGMEM = // standard baud rates
-{
-  2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600,
-  76800, 115200, 230400, 460800, 921600
-};
-
-static const uint16_t a2x[] PROGMEM = // 2x constants for standard baud rates
-{
-  (7 << 12) | 12,   // 2400
-  (6 << 12) | 12,   // 4800
-  (5 << 12) | 12,   // 9600
-  (1 << 12) | 138,  // 14400
-  (4 << 12) | 12,   // 19200
-  138,              // 28800
-  (3 << 12) | 12,   // 38400
-  (uint16_t)(-1 << 12) | 137, // 57600
-  (2 << 12) | 12,   // 76800
-  (uint16_t)(-2 << 12) | 135, // 115200
-  (uint16_t)(-3 << 12) | 131, // 230400
-  (uint16_t)(-4 << 12) | 123, // 460800
-  (uint16_t)(-5 << 12) | 107  // 921600
-};
-
-static const uint16_t a1x[] PROGMEM = // 1x constants for standard baud rates
-{
-  (6 << 12) | 12,   // 2400
-  (5 << 12) | 12,   // 4800
-  (4 << 12) | 12,   // 9600
-  138,              // 14400
-  (3 << 12) | 12,   // 19200
-  (uint16_t)(-1 << 12) | 137, // 28800
-  (2 << 12) | 12,   // 38400
-  (uint16_t)(-2 << 12) | 135, // 57600
-  (1 << 12) | 12,   // 76800
-  (uint16_t)(-3 << 12) | 131, // 115200
-  (uint16_t)(-4 << 12) | 123, // 230400
-  (uint16_t)(-5 << 12) | 107, // 460800
-  (uint16_t)(-6 << 12) | 75   // 921600
-};
-
-  // TODO:  binary search is faster, but uses more code
-
-  for(i1=0; i1 < sizeof(aBaud)/sizeof(aBaud[0]); i1++)
-  {
-    unsigned long dw1 = pgm_read_dword(&aBaud[i1]);
-    if(baud == dw1)
+    uint16_t i1;
+    
+    // standard baud rates
+    static const unsigned long aBaud[] PROGMEM = 
     {
-      if(use_u2x)
-      {
-        return pgm_read_word(&a2x[i1]);
-      }
-      else
-      {
-        return pgm_read_word(&a1x[i1]);
-      }
+        2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600,
+        /*76800,*/ 115200, 230400, 460800, 921600
+    };
+    
+#if F_CPU == 32000000     
+    // Note that this values assume F_CPU==32000000
+    // 2x constants for standard baud rates
+    static const uint16_t a2x[] PROGMEM = 
+    {
+        (7 << 12) | 12,             // 2400
+        (6 << 12) | 12,             // 4800
+        (5 << 12) | 12,             // 9600
+        (1 << 12) | 138,            // 14400
+        (4 << 12) | 12,             // 19200
+        138,                        // 28800
+        (3 << 12) | 12,             // 38400
+        (uint16_t)(-1 << 12) | 137, // 57600
+        //(2 << 12) | 12,             // 76800
+        (uint16_t)(-2 << 12) | 135, // 115200
+        (uint16_t)(-3 << 12) | 131, // 230400
+        (uint16_t)(-4 << 12) | 123, // 460800
+        (uint16_t)(-5 << 12) | 107  // 921600
+    };
+
+    // 1x constants for standard baud rates
+    static const uint16_t a1x[] PROGMEM = 
+    {
+        (6 << 12) | 12,             // 2400
+        (5 << 12) | 12,             // 4800
+        (4 << 12) | 12,             // 9600
+        138,                        // 14400
+        (3 << 12) | 12,             // 19200
+        (uint16_t)(-1 << 12) | 137, // 28800
+        (2 << 12) | 12,             // 38400
+        (uint16_t)(-2 << 12) | 135, // 57600
+        //(1 << 12) | 12,             // 76800
+        (uint16_t)(-3 << 12) | 131, // 115200
+        (uint16_t)(-4 << 12) | 123, // 230400
+        (uint16_t)(-5 << 12) | 107, // 460800
+        (uint16_t)(-6 << 12) | 75   // 921600
+    };
+#elif F_CPU == 16000000
+    // Note that this values assume F_CPU==16000000
+    // 2x constants for standard baud rates
+    static const uint16_t a2x[] PROGMEM = 
+    {
+        (14 << 12) + 3329, // 2400
+        (14 << 12) + 1663, // 4800
+        (14 << 12) + 829,  // 9600
+        (14 << 12) + 552,  // 14400
+        (14 << 12) + 413,  // 19200
+        (14 << 12) + 247,  // 28800
+        (14 << 12) + 204,  // 38400
+        (14 << 12) + 135,  // 57600
+        (14 << 12) + 65,   // 115200
+        (14 << 12) + 31,   // 230400
+        (9 << 12) + 428,   // 460800
+        (9 << 12) + 150    // 921600
+    };
+
+    // 1x constants for standard baud rates
+    static const uint16_t a1x[] PROGMEM = 
+    {
+        (13 << 12) + 3325, // 2400
+        (13 << 12) + 1659, // 4800
+        (13 << 12) + 825,  // 9600
+        (13 << 12) + 548,  // 14400
+        (13 << 12) + 409,  // 19200
+        (13 << 12) + 270,  // 28800
+        (13 << 12) + 200,  // 38400
+        (13 << 12) + 131,  // 57600
+        (13 << 12) + 61,   // 115200
+        (13 << 12) + 27,   // 230400
+        (9 << 12) + 150,   // 460800
+        (9 << 12) + 11     // 921600
+    };
+#else
+#error Unsupported F_CPU for serial baud value generation
+#endif
+
+    // TODO:  binary search is faster, but uses more code
+    for(i1 = 0; i1 < sizeof(aBaud) / sizeof(aBaud[0]); i1++)
+    {
+        unsigned long dw1 = pgm_read_dword(&aBaud[i1]);
+        
+        if(baud == dw1)
+        {
+            if(use_u2x)
+                return pgm_read_word(&a2x[i1]);
+            else
+                return pgm_read_word(&a1x[i1]);
+        }
     }
-  }
 
-  // NOTE:  baud <= F_CPU / 16 for 1x, F_CPU / 8 for 2x
-  //
-  // X = clk_2x ? 8 : 16    bscale >= 0:  bsel = F_CPU / ( (2 ^ bscale) * X * baud) - 1
-  //                                      baud = F_CPU / ( (2 ^ bscale) * X * (bsel + 1) )
-  //                        bscale < 0:   bsel = (1 / (2 ^ (bscale))) * (F_CPU / (X * baud) - 1)
-  //                                      baud = F_CPU / ( X * (((2 ^ bscale) * bsel) + 1) )
-  //
-  // NOTE:  if bsel is zero for a given bscale, then use bscale=0 and bsel=2^(bscale - 1)
-  //        see section 19.3.1
-  //
-  // find 'best fit baud' by calculating the best 'bscale' and 'bsel' for a given baud
-  // bscale is -7 through +7 so this can be done in a simple loop
-
-  return 1; // for now [half the maximum baud rate]
+    // NOTE:  baud <= F_CPU / 16 for 1x, F_CPU / 8 for 2x
+    //
+    // X = clk_2x ? 8 : 16    bscale >= 0:  bsel = F_CPU / ( (2 ^ bscale) * X * baud) - 1
+    //                                      baud = F_CPU / ( (2 ^ bscale) * X * (bsel + 1) )
+    //                        bscale < 0:   bsel = (1 / (2 ^ (bscale))) * (F_CPU / (X * baud) - 1)
+    //                                      baud = F_CPU / ( X * (((2 ^ bscale) * bsel) + 1) )
+    //
+    // NOTE:  if bsel is zero for a given bscale, then use bscale=0 and bsel=2^(bscale - 1)
+    //        see section 19.3.1
+    //
+    // find 'best fit baud' by calculating the best 'bscale' and 'bsel' for a given baud
+    // bscale is -7 through +7 so this can be done in a simple loop
+    
+    // for now [half the maximum baud rate]
+    return 1; 
 }
 
 
