@@ -198,7 +198,7 @@ class xmWire : public Stream {
     const static uint8_t TWI_SPEED_100000;
     /** 
      * Constant for the transmission speed of the TWI :
-     * Transmission should work at 100kHz
+     * Transmission should work at 400kHz
      */
     const static uint8_t TWI_SPEED_400000;
 
@@ -206,22 +206,28 @@ class xmWire : public Stream {
  private:
     /* constant signals an invalid port setting */ 
     const static uint8_t TWI_PORT_NA;
+    
     /* The port on which we are located */
     uint8_t port;
+    
     /* The speed we use */
     uint8_t speed;
+    
     /* The size of the internal buffers for send and receive */
     int bufferSize;
+    
     /** 
      * The TWI address of this instance. 
      * If the address is 0, we are a bus master
      */
     uint8_t address;
+    
     /** 
      * When we transmitt data to a slave this is 
      * the address of the slave.
      */
     uint8_t slaveAddress;
+    
     /** 
      * When we read data from a slave this is 
      * the number of bytes we expect in the 
@@ -235,12 +241,14 @@ class xmWire : public Stream {
     TWI_t *twi;
 
     /** A buffer for outgoing the data */
+    
     ByteBuffer sendBuffer;
     /** A buffer for incoming data */
     ByteBuffer receiveBuffer;
 
-    /** The result of the last operation */
+    /** The result of the last operation */    
     volatile int twiResult;
+    
     /** True if the bus is currently busy */
     //    volatile boolean busy;
      
@@ -367,9 +375,13 @@ class xmWire : public Stream {
 };
 
 extern xmWire xmWireC;
+#ifdef TWID
 extern xmWire xmWireD;
+#endif
 extern xmWire xmWireE;
+#ifdef TWIF
 extern xmWire xmWireF;
+#endif
 
 #endif // __AVR_XMEGA__
 

@@ -233,8 +233,9 @@
 // DEFINITIONS FOR SERIAL PORTS AND DEFAULT TWI
 // --------------------------------------------
 
-#define DEFAULT_TWI					TWIC
+#define DEFAULT_TWI					TWIE
 #define DEFAULT_SPI					SPIC
+#define SPI_PORT                    SPIC
 
 // serial port 0
 #define SERIAL_0_PORT_NAME			PORTD
@@ -460,9 +461,9 @@ const uint16_t PROGMEM digital_pin_to_control_PGM[] = {
 	(uint16_t) &PORTC_PIN2CTRL,  // PC 2 ** 10 **				ASYNC
 	(uint16_t) &PORTC_PIN3CTRL,  // PC 3 ** 11 **
 	(uint16_t) &PORTC_PIN4CTRL,  // PC 4 ** 12 ** SPI_SS
-	(uint16_t) &PORTC_PIN5CTRL,  // PC 5 ** 13 ** SPI_SCK
+	(uint16_t) &PORTC_PIN5CTRL,  // PC 5 ** 13 ** SPI_MOSI
 	(uint16_t) &PORTC_PIN6CTRL,  // PC 6 ** 14 ** SPI_MISO
-	(uint16_t) &PORTC_PIN7CTRL,  // PC 7 ** 15 ** SPI_MOSI
+	(uint16_t) &PORTC_PIN7CTRL,  // PC 7 ** 15 ** SPI_SCK
 
 	(uint16_t) &PORTE_PIN0CTRL,  // PE 0 ** 16 **
 	(uint16_t) &PORTE_PIN1CTRL,  // PE 1 ** 17 **				ASYNC 
@@ -504,9 +505,9 @@ const uint8_t PROGMEM digital_pin_to_port_PGM[] = {
   _PC,  // PC 2 ** 10 **
   _PC,  // PC 3 ** 11 **
   _PC,  // PC 4 ** 12 ** SPI_SS
-  _PC,  // PC 5 ** 13 ** SPI_SCK
+  _PC,  // PC 5 ** 13 ** SPI_MOSI
   _PC,  // PC 6 ** 14 ** SPI_MISO
-  _PC,  // PC 7 ** 15 ** SPI_MOSI
+  _PC,  // PC 7 ** 15 ** SPI_SCK
   
   _PE,  // PE 0 ** 16 **
   _PE,  // PE 1 ** 17 **
@@ -547,9 +548,9 @@ const uint8_t PROGMEM digital_pin_to_bit_mask_PGM[] = {
   _BV( 2 ),  // PC 2 ** 10 **
   _BV( 3 ),  // PC 3 ** 11 **
   _BV( 4 ),  // PC 4 ** 12 ** SPI_SS
-  _BV( 5 ),  // PC 5 ** 13 ** SPI_SCK
+  _BV( 5 ),  // PC 5 ** 13 ** SPI_MOSI
   _BV( 6 ),  // PC 6 ** 14 ** SPI_MISO
-  _BV( 7 ),  // PC 7 ** 15 ** SPI_MOSI
+  _BV( 7 ),  // PC 7 ** 15 ** SPI_SCK
   
   _BV( 0 ),  // PE 0 ** 16 **
   _BV( 1 ),  // PE 1 ** 17 **
@@ -595,9 +596,9 @@ const uint8_t PROGMEM digital_pin_to_timer_PGM[] = {
   TIMERC4,       // PC 2 ** 10 **
   TIMERC4,       // PC 3 ** 11 **
   TIMERC4,       // PC 4 ** 12 ** SPI_SS
-  TIMERC4,       // PC 5 ** 13 ** SPI_SCK
+  TIMERC4,       // PC 5 ** 13 ** SPI_MOSI
   TIMERC4,       // PC 6 ** 14 ** SPI_MISO
-  TIMERC4,       // PC 7 ** 15 ** SPI_MOSI
+  TIMERC4,       // PC 7 ** 15 ** SPI_SCK
   
   NOT_ON_TIMER,  // PE 0 ** 16 **
   NOT_ON_TIMER,  // PE 1 ** 17 **
