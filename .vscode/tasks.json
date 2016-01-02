@@ -1,11 +1,17 @@
 {
     "version": "0.1.0",
-    "command": "build.cmd",
+    "windows": {
+        "command": "build.cmd"
+    },
+    "linux": {
+        "command": "./build.sh"
+    },    
     "args": [
     ],
     "tasks": [
         {
             "taskName": "build",
+            "suppressTaskName": true,
             "args": [ ]
         }
     ]
