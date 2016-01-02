@@ -6,6 +6,6 @@ set DIST=.\walkera.zip
 
 if exist %DIST% del %DIST% 
 
-%ZIP% a -tzip %DIST% build.cmd .vscode\ hardware\walkera\ hardware\tools\walkera\
+%ZIP% a -tzip %DIST% build.cmd build.sh .vscode\ examples\WalkDuino\ hardware\walkera\ hardware\tools\walkera\
 
 %ZIP% t %DIST%

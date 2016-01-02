@@ -62,9 +62,9 @@ class Stream : public Print
   bool find(char *target, size_t length);   // reads data from the stream until the target string of given length is found
   // returns true if target string is found, false if timed out
 
-  bool findUntil(char *target, char *terminator);   // as find but search ends if the terminator string is found
+  bool findUntil(const char *target, const char *terminator);   // as find but search ends if the terminator string is found
 
-  bool findUntil(char *target, size_t targetLen, char *terminate, size_t termLen);   // as above but search ends if the terminate string is found
+  bool findUntil(const char *target, size_t targetLen, const char *terminate, size_t termLen);   // as above but search ends if the terminate string is found
 
 
   long parseInt(); // returns the first valid (long) integer value from the current position.

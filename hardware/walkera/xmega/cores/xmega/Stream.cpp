@@ -86,7 +86,7 @@ bool Stream::find(char *target, size_t length)
 }
 
 // as find but search ends if the terminator string is found
-bool  Stream::findUntil(char *target, char *terminator)
+bool  Stream::findUntil(const char *target, const char *terminator)
 {
   return findUntil(target, strlen(target), terminator, strlen(terminator));
 }
@@ -94,7 +94,7 @@ bool  Stream::findUntil(char *target, char *terminator)
 // reads data from the stream until the target string of the given length is found
 // search terminated if the terminator string is found
 // returns true if target string is found, false if terminated or timed out
-bool Stream::findUntil(char *target, size_t targetLen, char *terminator, size_t termLen)
+bool Stream::findUntil(const char *target, size_t targetLen, const char *terminator, size_t termLen)
 {
   size_t index = 0;  // maximum target string length is 64k bytes!
   size_t termIndex = 0;
