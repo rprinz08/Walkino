@@ -8,7 +8,7 @@
   repeatedly.
 
   2016 richard.prinz@min.at
- */
+*/
 
 // on the RX2635H receiver the LED is on pin 4
 #define LED     4
@@ -22,7 +22,7 @@ void setup() {
 // the loop function runs over and over again forever
 void loop() {
   digitalWrite(LED, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(3000);               // wait for a second
+  delay(1000);               // wait for a second
   digitalWrite(LED, LOW);    // turn the LED off by making the voltage LOW
-  delay(3000);               // wait for a second
+  delay(1000);               // wait for a second
 }
