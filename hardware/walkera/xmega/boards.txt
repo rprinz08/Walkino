@@ -18,3 +18,21 @@ rx2635.build.f_cpu=16000000L
 rx2635.build.board=RX2635H
 rx2635.build.core=xmega
 rx2635.build.variant=rx2635h
+
+##############################################################
+
+rx2634.name=Walkera RX2634H
+
+rx2634.upload.tool=up42
+rx2634.upload.protocol=xmodem
+rx2634.upload.key=0xD0943F8C297615D82040E32745D848AD
+rx2634.upload.maximum_size=32768
+rx2634.upload.maximum_data_size=4096
+rx2634.upload.speed=38400
+
+rx2634.build.mcu=atxmega32a4
+rx2634.build.f_cpu=16000000L
+rx2634.build.board=RX2634H
+rx2634.build.core=xmega
+rx2634.build.variant=rx2634h
+

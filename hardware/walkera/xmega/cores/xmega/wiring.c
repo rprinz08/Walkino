@@ -117,8 +117,8 @@ ISR(TCD2_LUNF_vect)
   timer0_fract = f;
   timer0_millis = m;
   timer0_overflow_count++;
-  
-  
+
+
 	// @@@
 	/*
 	if(timer0_test)
@@ -135,13 +135,13 @@ unsigned long millis()
   uint8_t oldSREG;
 
   oldSREG = SREG;
-  
+
   // disable interrupts while we read timer0_millis or we might get an
   // inconsistent value (e.g. in the middle of a write to timer0_millis)
   cli();
-  
+
   m = timer0_millis;
-  
+
   SREG = oldSREG;
 
   return m;
@@ -172,7 +172,7 @@ unsigned long micros()
 #ifdef TCC4
 	if((TCD5_INTFLAGS & _BV(0)) && (t < 255))
 #elif !defined(TCD2)
-	if((TCD0_INTFLAGS & _BV(0)) && (t < 255)) 
+	if((TCD0_INTFLAGS & _BV(0)) && (t < 255))
 #else
 	if((TCD2_INTFLAGS & _BV(0)) && (t < 255))
 #endif
@@ -182,7 +182,7 @@ unsigned long micros()
 	}
 
 	SREG = oldSREG;
-	
+
 	return ((m << 8) + t) * (64 / clockCyclesPerMicrosecond()); // TODO:  make the '64' a #define ?
 }
 
@@ -192,7 +192,7 @@ void delay(unsigned long ms)
 	unsigned long m;
 
 	ms = (ms * 100) * 2;
-	while(ms > 0) 
+	while(ms > 0)
 	{
 		m = micros();
 		if( (m - start) >= 1000)
@@ -209,7 +209,7 @@ void delayMicroseconds(unsigned int us)
 	// calling avrlib's delay_us() function with low values (e.g. 1 or
 	// 2 microseconds) gives delays longer than desired.
 	// delay_us(us);
-	
+
 	// the xmega typically has this
 #if F_CPU >= 32000000L
 	// NOTE: for 32mhz clock, max time is 65536 / 8 or about 8k microsecs
@@ -270,7 +270,7 @@ void delayMicroseconds(unsigned int us)
 	// of the function call yields a delay of approximately 1 1/8 us.
 	if(--us == 0)
 		return;
-	
+
 	// the following loop takes a quarter of a microsecond (4 cycles)
 	// per iteration, so execute it four times for each microsecond of
 	// delay requested.
@@ -278,7 +278,7 @@ void delayMicroseconds(unsigned int us)
 
 	// account for the time taken in the preceding commands.
 	us -= 2;
-	
+
 #else
 	// for the 8 MHz internal clock on the ATmega168
 
@@ -287,7 +287,7 @@ void delayMicroseconds(unsigned int us)
 	// subtract two, since us is unsigned; we'd overflow.
 	if(--us == 0)
 		return;
-	
+
 	if(--us == 0)
 		return;
 
@@ -325,7 +325,7 @@ void delayMicroseconds(unsigned int us)
 // regardless of the extra bytes needed to make the function call
 void clock_setup(void)
 {
-#ifdef ARDUINO_RX2635H
+#if defined(ARDUINO_RX2634H) || defined(ARDUINO_RX2635H)
 	//16MHz external crystal
 	OSC_XOSCCTRL = OSC_FRQRANGE_12TO16_gc | OSC_XOSCSEL_XTAL_16KCLK_gc;
 
@@ -340,7 +340,7 @@ void clock_setup(void)
 	CCP = CCP_IOREG_gc;
 	CLK_CTRL = CLK_SCLKSEL_XOSC_gc;
 #else
-	
+
 	unsigned short sCtr;
 	register unsigned char c1;
   // TODO:  get rid of magic bit numbers, and use bit value constants from iox64d4.h etc. (ongoing)
@@ -452,14 +452,14 @@ void clock_setup(void)
   // The RTC can be used to wake up the CPU.  It uses VERY little current.
 
   CLK_RTCCTRL = CLK_RTCSRC_RCOSC_gc; // section 6.9.4
-#endif  
+#endif
 }
 
 
 // this was derived from a message board post.  The function is public to make it easy to
 // use the 'Production Signature Row'.  There is a unique identifier for the CPU as well as
 // calibration data for the ADC available, and also USB settings (for USB-capable devices)
-// See sect. 4.14 "Production Signature Row" in 'D' manual.  
+// See sect. 4.14 "Production Signature Row" in 'D' manual.
 uint8_t readCalibrationData(uint16_t iIndex)
 {
   uint8_t rVal;
@@ -784,11 +784,11 @@ void init()
 
   Timer2Init(&TCC0);
 
-  
-  
-  
-  
-  
+
+
+
+
+
 #else // TCC2
 
   // TCD2
@@ -919,10 +919,10 @@ void init()
 
 #ifdef USARTC0_CTRLD
   USARTC0_CTRLD = 0;  // E5 has this register, must assign to zero
-#endif // USARTC0_CTRLD  
+#endif // USARTC0_CTRLD
 #ifdef USARTD0_CTRLD
   USARTD0_CTRLD = 0;  // E5 has this register, must assign to zero
-#endif // USARTC0_CTRLD  
+#endif // USARTC0_CTRLD
 
   // other serial ports found on A series
 #ifdef USARTDD1_CTRLA
@@ -1006,7 +1006,7 @@ void init()
   memset((void *)&(PORTC.PIN0CTRL), PORT_ISC_BOTHEDGES_gc | PORT_OPC_TOTEM_gc, 8);
   memset((void *)&(PORTD.PIN0CTRL), PORT_ISC_BOTHEDGES_gc | PORT_OPC_TOTEM_gc, 8);
 
-#ifdef PORTE 
+#ifdef PORTE
 #if NUM_DIGITAL_PINS > 22 /* meaning there is a PORT E available and it has 8 pins */
   memset((void *)&(PORTE.PIN0CTRL), PORT_ISC_BOTHEDGES_gc | PORT_OPC_TOTEM_gc, 8);
 #else // NUM_DIGITAL_PINS <= 22

@@ -1,11 +1,11 @@
 {
     "version": "0.1.0",
     "windows": {
-        "command": "build.cmd"
+        "command": "walkino-build.cmd"
     },
     "linux": {
-        "command": "./build.sh"
-    },    
+        "command": "./walkino-build.sh"
+    },
     "args": [
     ],
     "tasks": [

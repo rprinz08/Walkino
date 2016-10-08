@@ -44,6 +44,11 @@
 extern "C"{
 #endif // __cplusplus
 
+// macro to embedd a firmware ID string in RX2634H or RX2635H firmwares in a
+// special section named ".fwid" at address 0x7FB0 with a max length of 80
+// bytes (incl. string closing null byte)
+#define FW_ID(id) __attribute__((used)) __attribute__((section(".fwid"))) static const char fw_id[] = id;
+
 #define HIGH 0x1
 #define LOW  0x0
 
