@@ -1,4 +1,5 @@
 /.vscode/.browse*
+/.vscode/cSpell.json
 /.private
 /dist
 /examples/0*
@@ -19,4 +20,5 @@
 arduino
 arduino-builder
 install.sh
+uninstall.sh
 revisions.txt
