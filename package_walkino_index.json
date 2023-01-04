@@ -17,7 +17,7 @@
           "help": {
             "online": "https://www.min.at/walkino"
           },
-          "url": "http://127.0.0.1:8080/walkino-1.0.0.tar.gz",
+          "url": "https://github.com/rprinz08/Walkino/blob/master/walkino-1.0.0.tar.gz?raw=true",
           "archiveFileName": "walkino-1.0.0.tar.gz",
           "checksum": "SHA-256:e6bcdfc1e4ca3aced04f174fa578c53326ce01c6828a20e998edc7b2409d39b6",
           "size": "151434",
