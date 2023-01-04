@@ -591,7 +591,7 @@ char bCTS = SERIAL_1_CTS_PORT->IN & SERIAL_1_CTS_PIN;
       bCTS ||
 #endif // SERIAL_1_CTS_ENABLED
       tx_buffer2.head == tx_buffer2.tail)
-  
+
   {
 #ifdef SERIAL_1_CTS_ENABLED
     if(bCTS)
@@ -1009,18 +1009,18 @@ void serialEventRun(void)
 uint16_t temp_get_baud(unsigned long baud, uint8_t use_u2x)
 {
     uint16_t i1;
-    
+
     // standard baud rates
-    static const unsigned long aBaud[] PROGMEM = 
+    static const unsigned long aBaud[] PROGMEM =
     {
         1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600,
         /*76800,*/ 115200, 230400, 460800, 921600
     };
-    
-#if F_CPU == 32000000     
+
+#if F_CPU == 32000000
     // Note that this values assume F_CPU==32000000
     // 2x constants for standard baud rates
-    static const uint16_t a2x[] PROGMEM = 
+    static const uint16_t a2x[] PROGMEM =
     {
         0,                          // 1200
         (7 << 12) | 12,             // 2400
@@ -1039,7 +1039,7 @@ uint16_t temp_get_baud(unsigned long baud, uint8_t use_u2x)
     };
 
     // 1x constants for standard baud rates
-    static const uint16_t a1x[] PROGMEM = 
+    static const uint16_t a1x[] PROGMEM =
     {
         0,                          // 1200
         (6 << 12) | 12,             // 2400
@@ -1059,39 +1059,39 @@ uint16_t temp_get_baud(unsigned long baud, uint8_t use_u2x)
 #elif F_CPU == 16000000
     // Note that this values assume F_CPU==16000000
     // 2x constants for standard baud rates
-    static const uint16_t a2x[] PROGMEM = 
+    static const uint16_t a2x[] PROGMEM =
     {
-        (15 << 12) + 3331,  // 1200
-        (14 << 12) + 3329,  // 2400
-        (13 << 12) + 3325,  // 4800
-        (12 << 12) + 3317,  // 9600
-        (12 << 12) + 2206,  // 14400
-        (11 << 12) + 3301,  // 19200
-        (11 << 12) + 2190,  // 28800
-        (10 << 12) + 3269,  // 38400
-        (10 << 12) + 2158,  // 57600
-        (10 << 12) + 1047,  // 115200
-        (9 << 12) + 983,    // 230400
-        (9 << 12) + 428,    // 460800
-        (9 << 12) + 150     // 921600
+        (15U << 12) + 3331,  // 1200
+        (14U << 12) + 3329,  // 2400
+        (13U << 12) + 3325,  // 4800
+        (12U << 12) + 3317,  // 9600
+        (12U << 12) + 2206,  // 14400
+        (11U << 12) + 3301,  // 19200
+        (11U << 12) + 2190,  // 28800
+        (10U << 12) + 3269,  // 38400
+        (10U << 12) + 2158,  // 57600
+        (10U << 12) + 1047,  // 115200
+        (9U << 12) + 983,    // 230400
+        (9U << 12) + 428,    // 460800
+        (9U << 12) + 150     // 921600
     };
 
     // 1x constants for standard baud rates
-    static const uint16_t a1x[] PROGMEM = 
+    static const uint16_t a1x[] PROGMEM =
     {
-        (14 << 12) + 3329,  // 1200
-        (13 << 12) + 3325,  // 2400
-        (12 << 12) + 3317,  // 4800
-        (11 << 12) + 3301,  // 9600
-        (11 << 12) + 2190,  // 14400
-        (10 << 12) + 3269,  // 19200
-        (10 << 12) + 2158,  // 28800
-        (9 << 12) + 3205,   // 38400
-        (9 << 12) + 2094,   // 57600
-        (9 << 12) + 983,    // 115200
-        (9 << 12) + 428,    // 230400
-        (9 << 12) + 150,    // 460800
-        (9 << 12) + 11      // 921600
+        (14U << 12) + 3329,  // 1200
+        (13U << 12) + 3325,  // 2400
+        (12U << 12) + 3317,  // 4800
+        (11U << 12) + 3301,  // 9600
+        (11U << 12) + 2190,  // 14400
+        (10U << 12) + 3269,  // 19200
+        (10U << 12) + 2158,  // 28800
+        (9U << 12) + 3205,   // 38400
+        (9U << 12) + 2094,   // 57600
+        (9U << 12) + 983,    // 115200
+        (9U << 12) + 428,    // 230400
+        (9U << 12) + 150,    // 460800
+        (9U << 12) + 11      // 921600
     };
 #else
 #error Unsupported F_CPU for serial baud value generation
@@ -1101,7 +1101,7 @@ uint16_t temp_get_baud(unsigned long baud, uint8_t use_u2x)
     for(i1 = 0; i1 < sizeof(aBaud) / sizeof(aBaud[0]); i1++)
     {
         unsigned long dw1 = pgm_read_dword(&aBaud[i1]);
-        
+
         if(baud == dw1)
         {
             if(use_u2x)
@@ -1123,9 +1123,9 @@ uint16_t temp_get_baud(unsigned long baud, uint8_t use_u2x)
     //
     // find 'best fit baud' by calculating the best 'bscale' and 'bsel' for a given baud
     // bscale is -7 through +7 so this can be done in a simple loop
-    
+
     // for now [half the maximum baud rate]
-    return 1; 
+    return 1;
 }
 
 
@@ -1146,7 +1146,7 @@ uint16_t temp_get_baud(unsigned long baud, uint8_t use_u2x)
 
 /*
 void HardwareSerial::init(
-    ring_buffer *rx_buffer0, 
+    ring_buffer *rx_buffer0,
     ring_buffer *tx_buffer0,
     uint16_t usart0)
 {
@@ -1167,7 +1167,7 @@ void HardwareSerial::init(
 */
 
 HardwareSerial::HardwareSerial(
-    ring_buffer *rx_buffer0, 
+    ring_buffer *rx_buffer0,
     ring_buffer *tx_buffer0,
     uint16_t usart0) /*__attribute__ ((noinline))*/
 {
@@ -1209,7 +1209,7 @@ void HardwareSerial::begin(
 }
 
 void HardwareSerial::begin(
-    unsigned long baud, 
+    unsigned long baud,
     byte config)
 {
     uint16_t baud_setting;
@@ -1226,7 +1226,7 @@ void HardwareSerial::begin(
     if (baud <= 57600)
         use_u2x = 0;
     else
-        // enable CLK2X - bit 2 in the CTRLB 
+        // enable CLK2X - bit 2 in the CTRLB
         // register (section 19.14.4)
         use_u2x = _BV(USART_CLK2X_bp);
 
@@ -1235,19 +1235,19 @@ void HardwareSerial::begin(
 
     // baud rate calc - page 220 table 19-E5
     //                  [for standard values]
-    //                  table 19-1 (page 211) 
+    //                  table 19-1 (page 211)
     //                  for calculation formulae
     // (also see theory discussion on page 219)
     baud_setting = temp_get_baud(baud, use_u2x);
-    
-    // save old to restore interrupts as they 
+
+    // save old to restore interrupts as they
     // were
     oldSREG = SREG;
-    // clear interrupt flag until I'm done 
+    // clear interrupt flag until I'm done
     // assigning pin stuff
     cli();
 
-    // pin re-mapping register and port/pin 
+    // pin re-mapping register and port/pin
     // assignments
 
     if(_usart == &SERIAL_0_USART_NAME)
@@ -1296,7 +1296,7 @@ void HardwareSerial::begin(
         bitTX = (SERIAL_4_TX_PIN_INDEX);
         bitRX = (SERIAL_4_RX_PIN_INDEX);
 #ifdef SERIAL_4_REMAP
-        // NOTE: no remap for serial 4 through 
+        // NOTE: no remap for serial 4 through
         // Serial 7
 #warning pin remap not supported for 'SERIAL_4'
 #endif // SERIAL_4_REMAP
@@ -1308,7 +1308,7 @@ void HardwareSerial::begin(
         bitTX = (SERIAL_5_TX_PIN_INDEX);
         bitRX = (SERIAL_5_RX_PIN_INDEX);
 #ifdef SERIAL_5_REMAP
-        // NOTE: no remap for serial 5 
+        // NOTE: no remap for serial 5
         // through Serial 7
 #warning pin remap not supported for 'SERIAL_5'
 #endif // SERIAL_5_REMAP
@@ -1320,7 +1320,7 @@ void HardwareSerial::begin(
         bitTX = (SERIAL_6_TX_PIN_INDEX);
         bitRX = (SERIAL_6_RX_PIN_INDEX);
 #ifdef SERIAL_6_REMAP
-        // NOTE: no remap for serial 6 
+        // NOTE: no remap for serial 6
         // through Serial 7
 #warning pin remap not supported for 'SERIAL_6'
 #endif // SERIAL_6_REMAP
@@ -1332,7 +1332,7 @@ void HardwareSerial::begin(
         bitTX = (SERIAL_7_TX_PIN_INDEX);
         bitRX = (SERIAL_7_RX_PIN_INDEX);
 #ifdef SERIAL_7_REMAP
-        // NOTE: no remap for serial 7 
+        // NOTE: no remap for serial 7
         // through Serial 7
 #warning pin remap not supported for 'SERIAL_7'
 #endif // SERIAL_7_REMAP
@@ -1344,7 +1344,7 @@ void HardwareSerial::begin(
         goto exit_point;
     }
 
-// USART setup - for existing ports only 
+// USART setup - for existing ports only
 // (otherwise we just return)
 
     if(_usart == &USARTD0
@@ -1414,12 +1414,12 @@ void HardwareSerial::begin(
     *reg &= ~bit; // set as input
 
     // section 19.4.4
-    // enable clock 2x when set 
+    // enable clock 2x when set
     // (everything else disabled)
     _usart->CTRLB = use_u2x;
 
 
-    // section 19.14.5 - USART mode, parity, 
+    // section 19.14.5 - USART mode, parity,
     // bits
     // CMODE 7:6   00 [async]
     // PMODE 5:4   00=none  10=even 11=odd
@@ -1428,27 +1428,27 @@ void HardwareSerial::begin(
     _usart->CTRLC = config & ~(_BV(USART_CMODE1_bp)|_BV(USART_CMODE0_bp)); // make sure bits 6 and 7 are cleared
 #ifdef USARTD0_CTRLD
     // E5 has this register, must assign to zero
-    _usart->CTRLD = 0;  
-#endif  
+    _usart->CTRLD = 0;
+#endif
 
-    // assign the baud_setting, a.k.a. ubbr 
+    // assign the baud_setting, a.k.a. ubbr
     // (USART Baud Rate Register)
     _usart->BAUDCTRLA = (uint8_t)(baud_setting & 0xff);
     _usart->BAUDCTRLB = (uint8_t)(baud_setting >> 8);
 
     // section 19.4.4
-    // enable RX, enable TX.  
-    // Bit 2 will be 1 or 0 based on 
-    // clock 2x/1x.  multi-processor disabled.  
+    // enable RX, enable TX.
+    // Bit 2 will be 1 or 0 based on
+    // clock 2x/1x.  multi-processor disabled.
     // bit 9 = 0
     _usart->CTRLB = use_u2x | _BV(USART_RXEN_bp) | _BV(USART_TXEN_bp);
 
-    // priority 3 for RX interrupts.  
+    // priority 3 for RX interrupts.
     // DRE and TX interrupts OFF (for now).
     _usart->CTRLA = _BV(USART_RXCINTLVL1_bp) | _BV(USART_RXCINTLVL0_bp);
 
 exit_point:
-    // restore interrupt flag 
+    // restore interrupt flag
     // (now that I'm done assigning things)
     SREG = oldSREG;
 }
@@ -1461,7 +1461,7 @@ void HardwareSerial::end()
     // interrupts are enabled
     if(SREG & CPU_I_bm)
     {
-        // if ints not disabled it's safe to 
+        // if ints not disabled it's safe to
         // do this - wait for tx_buffer to empty
 
         while (_tx_buffer->head != _tx_buffer->tail) { }
@@ -1482,7 +1482,7 @@ int HardwareSerial::available(void)
     // save old to restore interrupts as they were
     register uint8_t oldSREG = SREG;
 
-    // clear interrupt flag to prevent 
+    // clear interrupt flag to prevent
     // inconsistency
     cli();
 

@@ -171,7 +171,7 @@ int analogRead(uint8_t pin)
 
     if(pin >= NUM_ANALOG_INPUTS)
     {
-      return; // not a valid analog input
+      return 0; // not a valid analog input
     }
 
 #ifdef analogInputToAnalogPin
