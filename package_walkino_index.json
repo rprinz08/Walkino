@@ -1,0 +1,77 @@
+{
+  "packages": [
+    {
+      "name": "walkino",
+      "maintainer": "min.at",
+      "websiteURL": "https://www.min.at/walkino",
+      "email": "info@min.at",
+      "help": {
+        "online": "https://www.min.at/walkino"
+      },
+      "platforms": [
+        {
+          "name": "Walkino",
+          "architecture": "xmega",
+          "version": "1.0.0",
+          "category": "Contributed",
+          "help": {
+            "online": "https://www.min.at/walkino"
+          },
+          "url": "http://127.0.0.1:8080/walkino-1.0.0.tar.gz",
+          "archiveFileName": "walkino-1.0.0.tar.gz",
+          "checksum": "SHA-256:e6bcdfc1e4ca3aced04f174fa578c53326ce01c6828a20e998edc7b2409d39b6",
+          "size": "151434",
+          "boards": [
+            {
+              "name": "Walkera RX2635H"
+            },
+            {
+              "name": "Walkera RX2634H"
+            }
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "arduino",
+              "name": "avr-gcc",
+              "version": "7.3.0-atmel3.6.1-arduino5"
+            },
+            {
+              "packager": "walkino",
+              "name": "up42",
+              "version": "1.0.0"
+            }
+          ]
+        }
+      ],
+      "tools": [
+        {
+          "name": "up42",
+          "version": "1.0.0",
+          "systems": [
+            {
+              "host": "i686-linux-gnu",
+              "url": "https://github.com/rprinz08/UP42/releases/download/v1.0.0/up42-1.0.0-i686-linux-gnu.tar.gz",
+              "archiveFileName": "up42-1.0.0-i686-linux-gnu.tar.gz",
+              "checksum": "SHA-256:dba13bfc361a2d749f8e2dede922d2d234ede70561022caab82a201e799ff872",
+              "size": "27990"
+            },
+            {
+              "host": "x86_64-linux-gnu",
+              "url": "https://github.com/rprinz08/UP42/releases/download/v1.0.0/up42-1.0.0-x86_64-linux-gnu.tar.gz",
+              "archiveFileName": "up42-1.0.0-x86_64-linux-gnu.tar.gz",
+              "checksum": "SHA-256:8bae2fedc1057f95ee82aa5d6e52516220bfb1a47f287b48d9e7c0a64e0dea6c",
+              "size": "28502"
+            },
+            {
+              "host": "i686-mingw32",
+              "url": "https://github.com/rprinz08/UP42/releases/download/v1.0.0/up42-1.0.0-i686-mingw32.tar.gz",
+              "archiveFileName": "up42-1.0.0-i686-mingw32.tar.gz",
+              "checksum": "SHA-256:ec918c0a099126d23ce218f6e0b0d4027e2e0868fdd42675944ff7d6fdf5fb13",
+              "size": "36405"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

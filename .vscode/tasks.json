@@ -1,18 +1,21 @@
 {
-    "version": "0.1.0",
+    "version": "2.0.0",
     "windows": {
-        "command": "walkino-build.cmd"
+        "command": "walkino-build-board.cmd"
     },
     "linux": {
-        "command": "./walkino-build.sh"
+        "command": "./walkino-build-board.sh"
     },
     "args": [
     ],
     "tasks": [
         {
-            "taskName": "build",
-            "suppressTaskName": true,
-            "args": [ ]
+            "label": "build",
+            "problemMatcher": [],
+            "group": {
+                "_id": "build",
+                "isDefault": false
+            }
         }
     ]
 }

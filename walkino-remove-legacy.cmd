@@ -8,6 +8,7 @@ del /f /q /s .\hardware\walkera
 del /f /q /s .\hardware\tools\walkera
 
 del /f /q .\readme.md ^
-    .\walkino-build.cmd .\walkino-build.sh ^
-    .\walkino-remove.cmd .\walkino-remove.sh
-del /f /q .\walkino.zip
+    .\walkino-build-legacy.cmd .\walkino-build-legacy.sh ^
+    .\walkino-remove-legacy.cmd .\walkino-remove-legacy.sh
+del /f /q .\walkino-legacy.zip
+
