@@ -47,14 +47,35 @@ project.
 
 This is the standard way to install Walkino.
 
-1. Add the Walkino board index to the list of
-   indexes in the Arduino IDE settings as shown
-   in the picture:
+1. Add the Walkino board index URL
 
-   pic
+   `https://raw.githubusercontent.com/rprinz08/Walkino/master/package_walkino_index.json`
+
+   to the list of indices in the Arduino IDE settings as shown in the pictures below:
+
+   a. for IDE v1.x
+
+   **File/Preferences**
+   ![Arduino v1 prefs](misc/arduino-ide-v1-prefs.png)
+
+   b. for IDE v2.x
+
+   **File/Preferences**
+   ![Arduino v1 prefs](misc/arduino-ide-v2-prefs.png)
 
 2. Install Walkino via board manager:
 
+   a. for IDE v1.x
+
+   **Tools/Board/Boards Manager**
+   ![Arduino v1 board manager](misc/arduino-ide-v1-boards.png)
+
+   b. for IDE v2.x
+
+   **Tools/Board/Boards Manager**
+   ![Arduino v1 prefs](misc/arduino-ide-v2-boards.png)
+
+   This also automatically installs the required uploader tool UP42 for the host platform.
 
 ### Legacy install
 
@@ -83,37 +104,42 @@ be completely removed using the provided
 **walkino-remove.cmd** for Windows) script.
 
 Included in this project are compiled binaries of
-the [UP42](https://github.com/rprinz08/UP42) utility
-which is needed to transfer compiled sketches to
-the receiver. You could also compile it yourself
-from source for security reasons if you want.
-Versions for Windows and Linux are provided as 32bit and 64bit
-binaries. If you are on a 32bit system you have to
-manually rename the 32bit versions **up42-32** to
-**up42** as the default is 64bit. These utilities
-could be found in the **hardware/tools/walkera/linux**
-or **hardware/tools/walkera/windows** folders inside the
-Arduino IDE folder.
+the [UP42](https://github.com/rprinz08/UP42)
+utility which is needed to transfer compiled
+sketches to the receiver. This is only required
+for legaxy install! You could also compile it
+yourself from source for security reasons if you
+want. Versions for Windows and Linux are
+provided as 32bit and 64bit binaries. If you are
+on a 32bit system you have to manually rename
+the 32bit versions **up42-32** to **up42** as
+the default is 64bit. These utilities could be
+found in the **hardware/tools/walkera/linux**
+or **hardware/tools/walkera/windows** folders
+inside the Arduino IDE folder.
 
-To connect the receiver boards to the development PC
-either an original Walkera UP02 or a USB to serial
-converter is needed. More infos about that topic are
-available [here](https://www.min.at/prinz/?x=entry:entry150622-125650)
+To connect the receiver boards to the
+development PC either an original Walkera UP02
+or a USB to serial converter is needed.
+
+More infos about that topic are available [here](https://www.min.at/prinz/?x=entry:entry150622-125650)
 and [here](https://www.min.at/prinz/?x=entry:entry161004-215304).
 
 
 ## Usage
+
 ![Arduino IDE](misc/walkino.png)
 
 Select one of the two new boards which are
-available After installation under the **Tools/Board** menu. Then select the serial port where
-the board is connected.
+available After installation under the **Tools/Board** menu.
+Then select the serial port where the board is
+connected.
 
 To start you can select one of the available
 examples under menu **File / Examples / Walkino**
 
-
 ## Contributing / Developing
+
 Walkino is not 100% complete or bug free. If you
 found any bug or have an idea for improvements -
 great! Feel free to contribute.

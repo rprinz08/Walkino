@@ -19,8 +19,8 @@
           },
           "url": "https://github.com/rprinz08/Walkino/blob/master/walkino-1.0.0.tar.gz?raw=true",
           "archiveFileName": "walkino-1.0.0.tar.gz",
-          "checksum": "SHA-256:e6bcdfc1e4ca3aced04f174fa578c53326ce01c6828a20e998edc7b2409d39b6",
-          "size": "151434",
+          "checksum": "SHA-256:91773361b96189033c8a5a4be6555b20fda5c9b26c6770c3e3e715e0194d9137",
+          "size": "151450",
           "boards": [
             {
               "name": "Walkera RX2635H"
